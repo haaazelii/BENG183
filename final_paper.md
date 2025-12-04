@@ -1,3 +1,64 @@
+
+
+## Profile Hidden Markov Model (profile HMM)
+
+Before diving into the HMMER suite, it's necessary to understand the underlying data structure it uses: the **profile Hidden Markov Model** (profile HMM). It is a generative model built from the Multiple Sequence Alignment (MSA) of the family. To measure how well a query sequence fits the family, we can use the probability of the profile HMM generating the sequence.
+ 
+### Structure of Profile HMM
+
+Let's look at the structure through an example profile HMM. The main body is the automaton, built from the multiple sequence alignment above it. (note: the family contains more sequences than the four shown). It consists of nodes called states and arrows denoting unidirectional transitions between states.
+
+<figure>
+  <img src="profile_hmm.png" alt="Profile HMM structure" style="width:50%; height:auto;">
+  <figcaption>Figure 1. Example Profile HMM structure. Image source: European Bioinformatics Institute (EMBL-EBI), Pfam Training Course.</figcaption>
+</figure>
+
+
+#### States
+The profile HMM is centered around the linear set of **match (M) states**, in between the beginning (B) state and the end (E) state. Each match state corresponds to a ***conserved*** MSA column, where most sequences contain a valid residue at that position, in contrast to a ***gappy*** column. Upon visiting the state, it will emit one residue from the set of characters (20 amino acids for proteins and nucleotides for DNA/RNA sequences). The **emission probability** is calculated from the residue frequency distribution within the MSA column it represents.
+
+Additional states are used to account for gaps in the MSA. Each **deletion (D) state** is connected across a match state, and allows skipping the bounded match state and emits a "-" instead of a valid residue. It accounts for gaps ***within*** conserved MSA columns, as illustrated by the red arrow in the diagram. **Insertion (I) state** accounts for gaps of variable length, and represents the extra residues ***between*** conserved MSA columns (indicated by the blue arrow).
+
+#### Transition and Other Parameters
+To move between states, we also need **transition probabilities**, the probabilities of moving from current states to the neighboring states downstream. For example, if we are at `M3`, we will have probabilities
+
+>P1 = P(<code>M3</code> &rarr; <code>M4</code>)<br>P2 = P(<code>M3</code> &rarr; <code>D4</code>)<br>P3 = P(<code>M3</code> &rarr; <code>I3</code>)
+
+
+The full set of parameters used in profile HMM is listed below:
+<div style="border:1px solid #ccc; padding:8px; display:inline-block; margin:12px 0; background:#fdfdfd;">
+  <ul style="margin:0; padding-left:16px; line-height:1.4;">
+    <li>&Sigma;: the set of symbols</li>
+    <li>Q: the set of states</li>
+    <li>e<sub>j</sub>(S): the probability of emitting residue S while in state j</li>
+    <li>T: the matrix of transition probabilities
+      <ul style="margin:4px 0 0 16px; padding-left:14px;">
+        <li>T[j,k]: probability of moving from state j to state k</li>
+      </ul>
+    </li>
+    <li>&pi;: the probability distribution on the initial state</li>
+  </ul>
+</div>
+
+
+### Path and Probability
+Consider an example string `S` = `"TCLD"`. Our profile HMM `M` can generate this sequence by following multiple paths. One possible path is:
+> `PATH` = `B` -> `M1` → `M2` → `D3` → `M4` → `M5` -> `E`
+
+The probability of generating this sequence by following the path is the product of emission probabilities of each match state emitting the corresponding residue:
+> **P**(<code>S</code> | <code>PATH</code>, <code>M</code>) = e<sub>M1</sub>(T) * e<sub>M2</sub>(C) * e<sub>M4</sub>(D) * e<sub>M5</sub>(D)
+ 
+The probability of traversing through this path in our profile HMM is the product of transition probabilities:
+> **P**(<code>PATH</code> | <code>M</code>) = &pi;[<code>M1</code>] * T[<code>M1</code>, <code>M2</code>] * T[<code>M2</code>, <code>D3</code>] * T[<code>D3</code>, <code>M4</code>] * T[<code>M4</code>, <code>M5</code>]
+
+And the overall probability of the model generating the sequence `S` through this path is:
+> **P**(<code>S</code> | <code>PATH</code>, <code>M</code>) = **P**(<code>S</code> | <code>PATH</code>, <code>M</code>) * **P**(<code>PATH</code> | <code>M</code>)
+
+Among all possible paths that can generate the sequence `S`, we can either sum over the probabilities of all possible paths, or find the max probability (Viterbi path) among them. Both algorithms are supported in HMMER, and this final probability is used to evaluate how well the sequence fits the profile HMM.
+
+
+
+
 ## HMMER Workflow
 
 The effective use of HMMER relies on understanding its workflow. Unlike simple pairwise alignment tools that function as a single step (sequence A vs. sequence B), HMMER operates as a multi-stage pipeline. This pipeline transforms raw biological data into a statistical model, which is then utilized to either discover new homologs in sequence databases or to annotate functional domains by querying profile databases.
@@ -114,3 +175,6 @@ Below is a comparison table between `hmmsearch` and `hmmscan`:
 
 ## References
 http://eddylab.org/software/hmmer/Userguide.pdf
+
+"Example Profile HMM Structure." EMBL-EBI: Pfam — Creating Protein Families, European Bioinformatics Institute,  
+https://www.ebi.ac.uk/training/online/courses/pfam-creating-protein-families/what-are-profile-hidden-markov-models-hmms/.
