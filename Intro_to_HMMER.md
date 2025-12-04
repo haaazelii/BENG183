@@ -43,6 +43,7 @@ The full set of parameters used in profile HMM is listed below:
 ### Path and Probability
 Consider an example string `S` = `"TCLD"`. Our profile HMM `M` can generate this sequence by following multiple paths. One possible path is:
 > `PATH` = `B` -> `M1` → `M2` → `D3` → `M4` → `M5` -> `E`
+>                 `T`  →  `C` →  `-` →  `L` →  `D`
 
 The probability of generating this sequence by following the path is the product of emission probabilities of each match state emitting the corresponding residue:
 > **P**(<code>S</code> | <code>PATH</code>, <code>M</code>) = e<sub>M1</sub>[T] * e<sub>M2</sub>[C] * e<sub>M4</sub>[L] * e<sub>M5</sub>[D]
