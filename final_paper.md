@@ -11,13 +11,13 @@ To get started, we need to input a high-quality **Multiple Sequence Alignment (M
 
 ### 2. Profile Construction
 
-This stage uses `hmmbuild` command to convert the biological alignment into a mathematical Profile HMM. It implements the theoretical concepts of Match, Insert, and Delete states to model the evolutionary constraints of the family.
+This stage uses `hmmbuild` command to convert the biological alignment into a mathematical Profile HMM. It implements the theoretical concepts of **Match, Insert, and Delete** states to model the evolutionary constraints of the family.
 
 ### 3. Application: The Search Strategies
 
 Once the profile is built, the workflow can go into two directions based on the research objective:
 
-- **HomologySearch (`hmmsearch`)**: Used for discovery. It takes the custom profile HMM and scans a target sequence database to find new homologs.
+- **Homology Search (`hmmsearch`)**: Used for discovery. It takes the custom profile HMM and scans a target sequence database to find new homologs.
         
 - **Domain Annotation (`hmmscan`):** Used for identification. It takes a single query sequence and scans it against a library of profiles HMM to identify functional domains within the sequence.
 
