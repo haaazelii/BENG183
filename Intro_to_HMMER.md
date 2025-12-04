@@ -45,7 +45,7 @@ Consider an example string `S` = `"TCLD"`. Our profile HMM `M` can generate this
 > `PATH` = `B` -> `M1` → `M2` → `D3` → `M4` → `M5` -> `E`
 
 The probability of generating this sequence by following the path is the product of emission probabilities of each match state emitting the corresponding residue:
-> **P**(<code>S</code> | <code>PATH</code>, <code>M</code>) = e<sub>M1</sub>(T) * e<sub>M2</sub>(C) * e<sub>M4</sub>(D) * e<sub>M5</sub>(D)
+> **P**(<code>S</code> | <code>PATH</code>, <code>M</code>) = e<sub>M1</sub>[T] * e<sub>M2</sub>[C] * e<sub>M4</sub>[L] * e<sub>M5</sub>[D]
  
 The probability of traversing through this path in our profile HMM is the product of transition probabilities:
 > **P**(<code>PATH</code> | <code>M</code>) = &pi;[<code>M1</code>] * T[<code>M1</code>, <code>M2</code>] * T[<code>M2</code>, <code>D3</code>] * T[<code>D3</code>, <code>M4</code>] * T[<code>M4</code>, <code>M5</code>]
