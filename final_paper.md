@@ -39,11 +39,15 @@ While the workflow provides the roadmap, understanding the specific mechanics of
 
 **Output** The command generates a Profile HMM file (ending with `.hmm` extension). This serves as a binary-compatible file that contains all information needed for later search strategies.
 
-![hmmbuild_output](hmmbuild_output.png)
-
 **Usage** The command requires the user to specify an output filename followed by the input alignment. For example, if you want to create a new profile HMM named `globins4.hmm` from the source alignment `globins4.sto`, you can use the command
 ```
 # Syntax: hmmbuild [output_hmm_file] [input_msa_file]
 hmmbuild globins4.hmm globins4.sto
 ```
+
+Below is an example of output HMM file. It begins with a header section containing metadata such as the family name, length, and type (amino acid or nucleotide). This is followed by the main model section, which contains a matrix of position-specific log-odds scores for match, insert, and delete states.
+
+![hmmbuild_output](hmmbuild_output.png)
+
+
 
