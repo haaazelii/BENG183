@@ -6,9 +6,12 @@ Before diving into the HMMER suite, it's necessary to understand the underlying 
 
 Let's look at the structure through an example profile HMM. The main body is the automaton, built from the multiple sequence alignment above it. (note: the family contains more sequences than the four shown). It consists of nodes called states and arrows denoting unidirectional transitions between states.
 
-![profile_hmm](profile_hmm.png)
-*Figure 1. Example Profile HMM structure. Image source: European Bioinformatics Institute (EMBL-EBI), Pfam Training Course.*
 
+<figure>
+  <img src="profile_hmm.png" alt="Profile HMM structure" style="width:70%; height:auto;">
+</figure>
+
+*Figure 1. Example Profile HMM structure. Image source: European Bioinformatics Institute (EMBL-EBI), Pfam Training Course.*
 
 #### States
 The profile HMM is centered around the linear set of **match (M) states**, in between the beginning (B) state and the end (E) state. Each match state corresponds to a ***conserved*** MSA column, where most sequences contain a valid residue at that position, in contrast to a ***gappy*** column. Upon visiting the state, it will emit one residue from the set of characters (20 amino acids for proteins and nucleotides for DNA/RNA sequences). The **emission probability** is calculated from the residue frequency distribution within the MSA column it represents.
@@ -104,7 +107,10 @@ hmmbuild hemoglobin.hmm hemoglobin.sto
 
 Below is an example of output HMM file. It begins with a header section containing metadata such as the family name, length, and type (amino acid or nucleotide). This is followed by the main model section, which contains a matrix of position-specific log-odds scores for match, insert, and delete states.
 
-![hmmbuild_output](hmmbuild_output.png)
+<figure>
+  <img src="hmmbuild_output.png" alt="hmmbuild_output" style="width:70%; height:auto;">
+</figure>
+
 *Figure 2. Example output of `hmmbuild`. Image source: HMMER User’s Guide.*
 
 ### `hmmsearch`: Homology Search
@@ -126,7 +132,10 @@ hmmsearch hemoglobin.hmm uniprot.fasta > hemoglobin.out
 ```
 Below is an example of the output list. This list is ranked by the "E-value" column, with the most statistically significant matches appearing at the top. Beside this, the "score" column provides the bit score, which is a standardized metric derived from the alignment's raw score. The "sequence" column indicates the matched sequence identifier, and the "Description" column shows a brief description of the sequence. This structure allows users to quickly filter low-quality hits and focus on the most biologically relevant alignments.
 
-![hmmsearch output](hmmsearch_output.png)
+<figure>
+  <img src="hmmsearch_output.png" alt="hmmsearch_output" style="width:70%; height:auto;">
+</figure>
+
 *Figure 3. Example output of `hmmsearch`. Image source: HMMER User’s Guide.*
 
 ### `hmmscan`: Domain Annotation
@@ -158,7 +167,10 @@ hmmscan hmmdb seq.fasta > results.out
 ```
 Below is an example of the `hmmscan` output ranked list. Similar to `hmmsearch`, the results are sorted by E-value. The difference is that now each row represents a valid hit of matched profile model. The **Model** column identifies the profile name (e.g., "fn3", "Pkinase"), and the **Description** column provides a brief summary of that domain's function. This layout allows researchers to rapidly identify which functional domains are present within their query protein.
 
-![hmmscan output](hmmscan_output.png)
+<figure>
+  <img src="hmmscan_output.png" alt="hmmscan_output" style="width:70%; height:auto;">
+</figure>
+
 *Figure 4. Example output of `hmmscan`. Image source: HMMER User’s Guide.*
 
 ### Difference between `hmmsearch` and `hmmscan`
