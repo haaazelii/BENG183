@@ -86,9 +86,9 @@ Once the profile is built, the workflow can go into two directions based on the 
 
 Both strategies generate a list of matches. HMMER filters biological signals from random noise, presenting hits ranked by bit score and e-value.
            
-## HMMER Functions
+## HMMER Tools
 
-While the workflow provides the roadmap, understanding the specific mechanics of each tool is essential for effective analysis. This section details the primary functions used in HMMER analysis: `hmmbuild`, `hmmsearch` and `hmmscan`.
+While the workflow provides the roadmap, understanding the specific mechanics of each tool is essential for effective analysis. This section details the primary tools used in HMMER analysis: `hmmbuild`, `hmmsearch` and `hmmscan`.
 
 ### `hmmbuild`: Profile Construction
 
@@ -186,9 +186,14 @@ It's easy to confuse `hmmsearch` and `hmmscan` because they both use HMMs and se
 
 *Table 1. Comparison table between `hmmsearch` and `hmmscan`.*
 
-## References
+## Sources
 "HMMER User’s Guide", Sean R. Eddy and the HMMER development team,
 http://eddylab.org/software/hmmer/Userguide.pdf/.
+
+HMMER Official Website, 
+http://hmmer.org/.
+
+Finn, Robert D et al. “HMMER web server: interactive sequence similarity searching.” Nucleic acids research vol. 39,Web Server issue (2011): W29-37. doi:10.1093/nar/gkr367 https://pmc.ncbi.nlm.nih.gov/articles/PMC3125773/
 
 "Example Profile HMM Structure." EMBL-EBI: Pfam — Creating Protein Families, European Bioinformatics Institute,  
 https://www.ebi.ac.uk/training/online/courses/pfam-creating-protein-families/what-are-profile-hidden-markov-models-hmms/.
