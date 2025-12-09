@@ -1,3 +1,20 @@
+## Introduction
+With the explosive growth of biological sequence databases, homology search has become essential for inferring protein function and evolutionary relationships. Although BLAST has long been the dominant solution, its local alignment framework and manually tuned gap penalties limit both sensitivity and compatibility with more advanced probabilistic scoring models such as profile HMMs [^1].
+
+Profile Hidden Markov Models (profile HMMs) provide a statistical and position-specific framework for modeling amino acid conservation, substitutions, and insertions/deletions, capturing evolutionary patterns present in multiple sequence alignments [2]. By computing log-likelihood ratios relative to a background model, profile HMMs allow more sensitive detection of remote homology compared to BLAST’s heuristic local scoring approach.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Profile Hidden Markov Model (profile HMM)
 
 Before diving into the HMMER suite, it's necessary to understand the underlying data structure it uses: the **profile Hidden Markov Model** (profile HMM). It is a generative model built from the Multiple Sequence Alignment (MSA) of the family. To measure how well a query sequence fits the family, we can use the probability of the profile HMM generating the sequence.
@@ -42,8 +59,8 @@ The full set of parameters used in profile HMM is listed below:
 
 ### Path and Probability
 Consider an example string `S` = `"TCLD"`. Our profile HMM `M` can generate this sequence by following multiple paths. One possible path is:
-> `PATH` = `B` -> `M1` → `M2` → `D3` → `M4` → `M5` -> `E` <br>
->                 `T`  →  `C` →  `-` →  `L` →  `D`
+> `PATH` = `B` -> `M1` �?`M2` �?`D3` �?`M4` �?`M5` -> `E` <br>
+>                 `T`  �? `C` �? `-` �? `L` �? `D`
 
 The probability of generating this sequence by following the path is the product of emission probabilities of each match state emitting the corresponding residue:
 > **P**(<code>S</code> | <code>PATH</code>, <code>M</code>) = e<sub>M1</sub>[T] * e<sub>M2</sub>[C] * e<sub>M4</sub>[L] * e<sub>M5</sub>[D]
@@ -186,6 +203,10 @@ It's easy to confuse `hmmsearch` and `hmmscan` because they both use HMMs and se
 
 *Table 1. Comparison table between `hmmsearch` and `hmmscan`.*
 
+## References
+[^1] Eddy SR. Accelerated Profile HMM Searches. PLoS Computational Biology. 2011; 7(10):e1002195.  
+[2] Krogh A, Brown M, Mian IS, Sjolander K, Haussler D. Hidden Markov models in computational biology: Applications to protein modeling. Journal of Molecular Biology. 1994; 235:1501-1531.
+
 ## Sources
 "HMMER User’s Guide", Sean R. Eddy and the HMMER development team,
 http://eddylab.org/software/hmmer/Userguide.pdf/.
@@ -193,7 +214,11 @@ http://eddylab.org/software/hmmer/Userguide.pdf/.
 HMMER Official Website, 
 http://hmmer.org/.
 
-Finn, Robert D et al. “HMMER web server: interactive sequence similarity searching.” Nucleic acids research vol. 39,Web Server issue (2011): W29-37. doi:10.1093/nar/gkr367 https://pmc.ncbi.nlm.nih.gov/articles/PMC3125773/
+Finn, Robert D et al. “HMMER web server: interactive sequence similarity searching.�?Nucleic acids research vol. 39,Web Server issue (2011): W29-37. doi:10.1093/nar/gkr367 https://pmc.ncbi.nlm.nih.gov/articles/PMC3125773/
 
-"Example Profile HMM Structure." EMBL-EBI: Pfam — Creating Protein Families, European Bioinformatics Institute,  
+"Example Profile HMM Structure." EMBL-EBI: Pfam �?Creating Protein Families, European Bioinformatics Institute,  
 https://www.ebi.ac.uk/training/online/courses/pfam-creating-protein-families/what-are-profile-hidden-markov-models-hmms/.
+
+
+
+
