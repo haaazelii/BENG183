@@ -3,7 +3,7 @@ With the explosive growth of biological sequence databases, homology search has 
 
 Profile Hidden Markov Models (profile HMMs) provide a statistical and position-specific framework for modeling amino acid conservation, substitutions, and insertions/deletions, capturing evolutionary patterns present in multiple sequence alignments [2]. By computing log-likelihood ratios relative to a background model, profile HMMs allow more sensitive detection of remote homology compared to BLAST's heuristic local scoring approach.
 
-[HMMER](http://hmmer.org) is a widely used software suite that implements profile HMMs for homology search. It enables researchers to build profile HMMs from multiple sequence alignments and use them to search sequence databases for homologous sequences or to annotate functional domains within query sequences. HMMER's algorithms are optimized for speed and accuracy, making it a powerful tool for bioinformatics applications. In this section, we will introduce the fundamental concept profile HMMs and provide an overview of the HMMER workflow.
+[HMMER](http://hmmer.org) is a widely used software suite that implements profile HMMs for homology search. It enables researchers to build profile HMMs from multiple sequence alignments and use them to search sequence databases for homologous sequences or to annotate functional domains within query sequences. HMMER's algorithms are optimized for speed and accuracy, making it a powerful tool for bioinformatics applications. In this section, we will introduce the fundamental concept of profile HMMs and provide an overview of the HMMER workflow.
 
 ## Profile Hidden Markov Model (profile HMM)
 
@@ -21,7 +21,7 @@ Let's look at the structure through an example profile HMM. The main body is the
 *Figure 1. Example Profile HMM structure. Image source: European Bioinformatics Institute (EMBL-EBI), Pfam Training Course [3].*
 
 #### States
-The profile HMM is centered around the linear set of **match (M) states**[4], in between the beginning (B) state and the end (E) state. Each match state corresponds to a ***conserved*** MSA column, where most sequences contain a valid residue at that position, in contrast to a ***gappy*** column. Upon visiting the state, it will emit one residue from the set of characters (20 amino acids for proteins and nucleotides for DNA/RNA sequences). The **emission probability** is calculated from the residue frequency distribution within the MSA column it represents.
+The profile HMM is centered around the linear set of **match (M) states** [4], in between the beginning (B) state and the end (E) state. Each match state corresponds to a ***conserved*** MSA column, where most sequences contain a valid residue at that position, in contrast to a ***gappy*** column. Upon visiting the state, it will emit one residue from the set of characters (20 amino acids for proteins and nucleotides for DNA/RNA sequences). The **emission probability** is calculated from the residue frequency distribution within the MSA column it represents.
 
 Additional states are used to account for gaps in the MSA. Each **deletion (D) state** is connected across a match state, and allows skipping the bounded match state and emits a "-" instead of a valid residue. It accounts for gaps ***within*** conserved MSA columns, as illustrated by the red arrow in the diagram. **Insertion (I) state** accounts for gaps of variable length, and represents the extra residues ***between*** conserved MSA columns (indicated by the blue arrow).
 
@@ -87,7 +87,7 @@ Once the profile is built, the workflow can go into two directions based on the 
 
 - **Homology Search (`hmmsearch`)**: Used for discovery. It takes the custom profile HMM and scans a target sequence database to find new homologs.
         
-- **Domain Annotation (`hmmscan`):** Used for identification. It takes a single query sequence and scans it against a library of profiles HMM to identify functional domains within the sequence.
+- **Domain Annotation (`hmmscan`):** Used for identification. It takes a single query sequence and scans it against a library of profile HMMs to identify functional domains within the sequence.
 
 ### 4. Output: Ranked Results
 
@@ -133,7 +133,7 @@ Once a profile has been constructed using `hmmbuild`, the most common tool to us
 
 **Output** The software produces a ranked list of hits as output. These hits are sorted based on e-value and bit score, which measures the statistical significance and raw quality of the match. The output also includes the specific alignments showing where the model matched the target sequences.
 
-**Usage** To execute a search, the user runs the command followed by the profile file and the target sequence database. For example, if you want to search the `uniprot.fasta` database using the `hemoglobin.hmm` profile and prints the results to the standard output, you can use the command
+**Usage** To execute a search, the user runs the command followed by the profile file and the target sequence database. For example, if you want to search the `uniprot.fasta` database using the `hemoglobin.hmm` profile and print the results to the standard output, you can use the command
 ```
 # Syntax: hmmsearch [query_hmm_file] [target_msa_file] > [output_file]
 hmmsearch hemoglobin.hmm uniprot.fasta > hemoglobin.out
@@ -153,7 +153,7 @@ Below is an example of the output list. This list is ranked by the "E-value" col
 **Input** `hmmscan` requires two inputs.
 
 1.  Query: a file containing one or more **protein sequences**, typically in FASTA format.
-2. Target: a **Profile HMM Database** (e.g., Pfam). This database must be prepared using `hmmpress`, which compress and index your profile database for faster lookups.    
+2. Target: a **Profile HMM Database** (e.g., Pfam). This database must be prepared using `hmmpress`, which compresses and indexes your profile database for faster lookups.    
 
 **Process** `hmmscan` performs a "Sequence v.s. Profile" search. It operates by reading the query sequence and scanning it against the entire indexed profile database. It annotates the query sequence by identifying which known domains or families within the database are present in the query.
 
