@@ -1,5 +1,19 @@
+## Table of Contents
+- [Overview](#overview)
+- [Profile Hidden Markov Model (profile HMM)](#profile-hidden-markov-model-profile-hmm)
+  - [Structure of Profile HMM](#structure-of-profile-hmm)
+  - [Path and Probability](#path-and-probability)
+- [HMMER Workflow](#hmmer-workflow)
+- [HMMER Tools](#hmmer-tools)
+  - [`hmmbuild`: Profile Construction](#hmmbuild-profile-construction)
+  - [`hmmsearch`: Homology Search](#hmmsearch-homology-search)
+  - [`hmmscan`: Domain Annotation](#hmmscan-domain-annotation)
+  - [Difference between `hmmsearch` and `hmmscan`](#difference-between-hmmsearch-and-hmmscan)
+- [Discussions](#discussions)
+- [References](#references)
+
 ## Overview
-With the explosive growth of biological sequence databases, homology search has become essential for inferring protein function and evolutionary relationships. Although BLAST has long been the dominant solution, its local alignment framework and manually tuned gap penalties limit both sensitivity and compatibility with more advanced probabilistic scoring models such as profile HMMs [1].
+With the explosive growth of biological sequence databases, homology search has become popular for inferring protein function and evolutionary relationships. Although BLAST has long been the dominant solution, its local alignment framework and manually tuned gap penalties limit both sensitivity and compatibility with more advanced probabilistic scoring models such as profile HMMs [1].
 
 Profile Hidden Markov Models (profile HMMs) provide a statistical and position-specific framework for modeling amino acid conservation, substitutions, and insertions/deletions, capturing evolutionary patterns present in multiple sequence alignments [2]. By computing log-likelihood ratios relative to a background model, profile HMMs allow more sensitive detection of remote homology compared to BLAST's heuristic local scoring approach.
 
@@ -215,16 +229,6 @@ GPU-accelerated homology search has enabled further advances beyond CPU-optimize
 [6] Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ. Basic local alignment search tool. Journal of Molecular Biology. 1990; 215(3):403-410.  
 [7] Mirdita M, Schutze K, Moriwaki Y, Heo L, Ovchinnikov S, Steinegger M. ColabFold: making protein folding accessible to all. Nat Methods. 2022;19:679-682.  
 [8] Kallenborn F, Chacon A, Hundt C, Sirelkhatim H, Didi K, Cha S, et al. GPU-accelerated homology search with MMseqs2. Nat Methods. 2025;22:2024-2027.
-
-
-
-## Additional Sources
-HMMER Official Website, http://hmmer.org/.
-
-Finn, Robert D et al. "HMMER web server: interactive sequence similarity searching." Nucleic acids research vol. 39, Web Server issue (2011): W29-37. doi:10.1093/nar/gkr367. https://pmc.ncbi.nlm.nih.gov/articles/PMC3125773/
-
-
-
 
 
 
