@@ -109,7 +109,7 @@ Both strategies generate a list of matches. HMMER filters biological signals fro
            
 ## HMMER Tools
 
-While the workflow provides the roadmap, understanding the specific mechanics of each tool is essential for effective analysis. This section details the primary tools used in HMMER analysis: `hmmbuild`, `hmmsearch` and `hmmscan`.
+While the workflow provides the roadmap, understanding the specific mechanics of each tool is essential for effective analysis. This section details the primary tools used in HMMER analysis: `hmmbuild`, `hmmsearch` and `hmmscan` [5].
 
 ### `hmmbuild`: Profile Construction
 
@@ -133,7 +133,7 @@ Below is an example of output HMM file. It begins with a header section containi
   <img src="hmmbuild_output.png" alt="hmmbuild_output" style="width:70%; height:auto;">
 </figure>
 
-*Figure 2. Example output of `hmmbuild`. Image source: HMMER User's Guide [4].*
+*Figure 2. Example output of `hmmbuild`. Image source: HMMER User's Guide [5].*
 
 ### `hmmsearch`: Homology Search
 
@@ -158,7 +158,7 @@ Below is an example of the output list. This list is ranked by the "E-value" col
   <img src="hmmsearch_output.png" alt="hmmsearch_output" style="width:70%; height:auto;">
 </figure>
 
-*Figure 3. Example output of `hmmsearch`. Image source: HMMER User's Guide [4].*
+*Figure 3. Example output of `hmmsearch`. Image source: HMMER User's Guide [5].*
 
 ### `hmmscan`: Domain Annotation
 
@@ -193,7 +193,7 @@ Below is an example of the `hmmscan` output ranked list. Similar to `hmmsearch`,
   <img src="hmmscan_output.png" alt="hmmscan_output" style="width:70%; height:auto;">
 </figure>
 
-*Figure 4. Example output of `hmmscan`. Image source: HMMER User's Guide [4].*
+*Figure 4. Example output of `hmmscan`. Image source: HMMER User's Guide [5].*
 
 ### Difference between `hmmsearch` and `hmmscan`
 
