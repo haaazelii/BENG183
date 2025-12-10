@@ -1,3 +1,6 @@
+# Introduction to HMMER: Profile Hidden Markov Models for Homology Search
+Authored by: Hazel Li, Sean Liu, Pranav Siva
+
 ## Table of Contents
 - [Overview](#overview)
 - [Profile Hidden Markov Model (profile HMM)](#profile-hidden-markov-model-profile-hmm)
